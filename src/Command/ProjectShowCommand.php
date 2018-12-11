@@ -24,28 +24,6 @@ class ProjectShowCommand extends AbstractCommand
         $output->writeln("");
         $output->writeln("\t" . $this->color()->cyan('Tasks: '));
 
-        usort($project->tasks, function($a, $b) {
-            if($a->done && $b->done)
-            {
-                return 0;
-            }
-            if($a->done && !$b->done)
-            {
-                return 1;
-            }
-
-            return -1;
-        });
-
-        foreach($project->tasks as $task) {
-            $taskString = $task->done ?
-                $this->color()->darkgray($task->title) :
-                $this->color()->white($task->title);
-
-            $output->writeln("\t\t" .
-                $this->color()->green($task->uuid) .
-                $taskString
-            );
-        }
+        $this->printTasks($project->tasks, $output, "\t");
     }
 }
