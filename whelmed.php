@@ -13,12 +13,14 @@ use WhelmedCli\Command\TaskMoveCommand;
 use WhelmedCli\Command\TaskCreateCommand;
 use WhelmedCli\Command\ProjectListCommand;
 use WhelmedCli\Command\ProjectShowCommand;
+use WhelmedCli\Command\TodayCommand;
 
 $dotEnv = new Dotenv();
 $dotEnv->load(__DIR__.'/.env');
 
 $app = new Silly\Edition\PhpDi\Application();
 
+$app->command('today', new TodayCommand());
 $app->command('move uuid project', new TaskMoveCommand(), ['m']);
 $app->command('project:show uuid', new ProjectShowCommand(), ['p:show','p:s']);
 $app->command('project:list', new ProjectListCommand(), ['p:ls']);
