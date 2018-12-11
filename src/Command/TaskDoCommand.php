@@ -10,7 +10,7 @@ class TaskDoCommand extends AbstractCommand
     {
         $json = $this->request('/task/do/' . $uuid);
 
-        if($json->status == 'success') {
+        if ($json->status == 'success') {
             $output->writeln($this->color()->green($json->message));
         } else {
             $output->writeln($this->color()->red($json->message));

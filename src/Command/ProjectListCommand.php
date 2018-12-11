@@ -11,19 +11,18 @@ class ProjectListCommand extends AbstractCommand
         $json = $this->request('/project/list');
 
         $projects = $json->projects;
-        usort($projects, function($a, $b) {
-            if($a->title == $b->title)
-            {
+        usort($projects, function ($a, $b) {
+            if ($a->title == $b->title) {
                 return 0;
             }
 
             return $a->title > $b->title;
         });
 
-        foreach($projects as $project) {
+        foreach ($projects as $project) {
             $output->writeln(
                 $this->color()->green($project->uuid) .
-                $this->color->white($project->title) . 
+                $this->color->white($project->title) .
                 $this->color->darkgray('(' . $project->taskCount->undone . ' undone)')
             );
         }

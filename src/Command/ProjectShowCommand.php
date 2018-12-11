@@ -13,12 +13,14 @@ class ProjectShowCommand extends AbstractCommand
         $project = $json->project;
 
         $output->writeln($this->color()->white($project->title));
-        $output->writeln("\t" . 
+        $output->writeln(
+            "\t" .
             $this->color()->cyan('Uuid: ') .
             $this->color()->green($project->uuid)
         );
-        $output->writeln("\t" . 
-            $this->color()->cyan('Type: ') . 
+        $output->writeln(
+            "\t" .
+            $this->color()->cyan('Type: ') .
             $this->color()->white($project->type)
         );
         $output->writeln("");

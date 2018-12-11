@@ -7,13 +7,13 @@ use WhelmedCli\Color;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
-abstract class AbstractCommand 
+abstract class AbstractCommand
 {
     protected $color;
 
-    public function color() {
-        if($this->color === null)
-        {
+    public function color()
+    {
+        if ($this->color === null) {
             $this->color = new Color();
         }
 
@@ -22,32 +22,29 @@ abstract class AbstractCommand
 
     protected function printTasks($tasks, OutputInterface $output, $prefix = "")
     {
-        usort($tasks, function($a, $b) {
-            if($a->project->title == $b->project->title)
-            {
+        usort($tasks, function ($a, $b) {
+            if ($a->project->title == $b->project->title) {
                 return 0;
             }
 
             return $a->project->title > $b->project->title;
         });
 
-        foreach($tasks as $task) {
+        foreach ($tasks as $task) {
             $taskString = $task->done ?
                 $this->color()->darkgray($task->title) :
                 $this->color()->white($task->title);
 
-            if(isset($task->project->title)) {
+            if (isset($task->project->title)) {
                 $output->writeln(
-                    $prefix . 
+                    $prefix .
                     $this->color()->green($task->uuid) .
                     $this->color()->cyan($task->project->title) .
-                    $taskString 
-                ); 
-            } 
-            else
-            {
+                    $taskString
+                );
+            } else {
                 $output->writeln(
-                    $prefix . 
+                    $prefix .
                     $this->color()->green($task->uuid) . $this->color()->white($task->title)
                 );
             }
@@ -58,7 +55,7 @@ abstract class AbstractCommand
     {
         $url = getenv('BASE_URL') . $url;
 
-        if($method == 'GET') {
+        if ($method == 'GET') {
             $client = new Guzzle();
             $result = $client->request($method, $url, [
                 'headers' => [
@@ -72,7 +69,6 @@ abstract class AbstractCommand
             $result = $client->request($method, $url, [
                 'headers' => $headers
             ]);
-             
         } else {
             $client = new Guzzle();
             $result = $client->request($method, $url, [
