@@ -19,11 +19,11 @@ $dotEnv->load(__DIR__.'/.env');
 
 $app = new Silly\Edition\PhpDi\Application();
 
-$app->command('move uuid project', new TaskMoveCommand());
-$app->command('project:show uuid', new ProjectShowCommand());
-$app->command('project:list', new ProjectListCommand());
-$app->command('list', new TaskListCommand());
-$app->command('do uuid', new TaskDoCommand());
-$app->command('show uuid', new TaskShowCommand());
-$app->command('create title [dueDate] [-p|--project=]*', new TaskCreateCommand());
+$app->command('move uuid project', new TaskMoveCommand(), ['m']);
+$app->command('project:show uuid', new ProjectShowCommand(), ['p:show','p:s']);
+$app->command('project:list', new ProjectListCommand(), ['p:ls']);
+$app->command('list', new TaskListCommand(), ['ls']);
+$app->command('do uuid', new TaskDoCommand(), ['d']);
+$app->command('show uuid', new TaskShowCommand(), ['s']);
+$app->command('create title [dueDate] [-p|--project=]*', new TaskCreateCommand(), ['c']);
 $app->run();
