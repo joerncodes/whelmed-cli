@@ -66,6 +66,13 @@ abstract class AbstractCommand
             $result = $client->request($method, $url, [
                 'headers' => $headers
             ]);
+        } elseif ($method == 'DELETE') {
+            $client = new Guzzle();
+            $headers = [ 'Authorization' => 'Bearer ' . getenv('API_TOKEN')];
+            $headers = array_merge($headers, $payload);
+            $result = $client->request($method, $url, [
+                'headers' => $headers
+            ]);
         } else {
             $client = new Guzzle();
             $result = $client->request($method, $url, [
