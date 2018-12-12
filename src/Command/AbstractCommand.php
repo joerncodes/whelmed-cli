@@ -26,7 +26,7 @@ abstract class AbstractCommand
             if($task->done) {
                 $taskString = $this->color()->darkgray($task->title); 
             } elseif($task->flagged) {
-                $taskString = $this->color()->magenta($task->title);
+                $taskString = $this->color()->magenta('【F】 ' . $task->title);
             } else {
                 $taskString = $this->color()->white($task->title);
             }
