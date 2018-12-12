@@ -28,4 +28,9 @@ class Color
     {
         return "\033[0;36m " . $string . " ";
     }
+
+    public function magenta($string)
+    {
+        return "\033[0;95m " . $string . " ";
+    }
 }

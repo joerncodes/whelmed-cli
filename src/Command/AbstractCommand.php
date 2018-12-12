@@ -22,18 +22,14 @@ abstract class AbstractCommand
 
     protected function printTasks($tasks, OutputInterface $output, $prefix = "")
     {
-        usort($tasks, function ($a, $b) {
-            if ($a->project->title == $b->project->title) {
-                return 0;
-            }
-
-            return $a->project->title > $b->project->title;
-        });
-
         foreach ($tasks as $task) {
-            $taskString = $task->done ?
-                $this->color()->darkgray($task->title) :
-                $this->color()->white($task->title);
+            if($task->done) {
+                $taskString = $this->color()->darkgray($task->title); 
+            } elseif($task->flagged) {
+                $taskString = $this->color()->magenta($task->title);
+            } else {
+                $taskString = $this->color()->white($task->title);
+            }
 
             if (isset($task->project->title)) {
                 $output->writeln(
@@ -45,7 +41,8 @@ abstract class AbstractCommand
             } else {
                 $output->writeln(
                     $prefix .
-                    $this->color()->green($task->uuid) . $this->color()->white($task->title)
+                    $this->color()->green($task->uuid) .
+                    $taskString
                 );
             }
         }

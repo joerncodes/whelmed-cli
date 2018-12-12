@@ -14,18 +14,20 @@ use WhelmedCli\Command\TaskCreateCommand;
 use WhelmedCli\Command\ProjectListCommand;
 use WhelmedCli\Command\ProjectShowCommand;
 use WhelmedCli\Command\TodayCommand;
+use WhelmedCli\Command\InboxCommand;
 
 $dotEnv = new Dotenv();
 $dotEnv->load(__DIR__.'/.env');
 
 $app = new Silly\Edition\PhpDi\Application();
 
-$app->command('today', new TodayCommand());
+$app->command('inbox', new InboxCommand(), ['i']);
+$app->command('today', new TodayCommand(), ['t']);
 $app->command('move uuid project', new TaskMoveCommand(), ['m']);
 $app->command('project:show uuid', new ProjectShowCommand(), ['p:show','p:s']);
 $app->command('project:list', new ProjectListCommand(), ['p:ls']);
 $app->command('list', new TaskListCommand(), ['ls']);
 $app->command('do uuid', new TaskDoCommand(), ['d']);
 $app->command('show uuid', new TaskShowCommand(), ['s']);
-$app->command('create title [dueDate] [-p|--project=]*', new TaskCreateCommand(), ['c']);
+$app->command('create title [dueDate] [-p|--project=]*', new TaskCreateCommand(), ['c', 'add']);
 $app->run();
