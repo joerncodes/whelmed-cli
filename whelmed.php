@@ -15,12 +15,16 @@ use WhelmedCli\Command\ProjectListCommand;
 use WhelmedCli\Command\ProjectShowCommand;
 use WhelmedCli\Command\TodayCommand;
 use WhelmedCli\Command\InboxCommand;
+use WhelmedCli\Command\TaskFlagCommand;
+use WhelmedCli\Command\TaskUnflagCommand;
 
 $dotEnv = new Dotenv();
 $dotEnv->load(__DIR__.'/.env');
 
 $app = new Silly\Edition\PhpDi\Application();
 
+$app->command('unflag uuid', new TaskUnflagCommand(), ['uf']);
+$app->command('flag uuid', new TaskFlagCommand(), ['f']);
 $app->command('inbox', new InboxCommand(), ['i']);
 $app->command('today', new TodayCommand(), ['t']);
 $app->command('move uuid project', new TaskMoveCommand(), ['m']);
