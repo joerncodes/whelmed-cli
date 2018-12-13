@@ -8,11 +8,14 @@ class TaskCreateCommand extends AbstractCommand
 {
     public function __invoke($title, $dueDate = null, $project = null, $context = null, OutputInterface $output)
     {
+        if (is_array($dueDate)) {
+            $dueDate = $dueDate[0];
+        }
         if (is_array($project)) {
             $project = $project[0];
         }
         if (is_array($context)) {
-            $context= $context[0];
+            $context = $context[0];
         }
 
         if (!is_null($dueDate)) {

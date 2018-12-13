@@ -38,6 +38,10 @@ abstract class AbstractCommand
                 }
                 $taskString .= '(' . implode(',', $contextStrings) . ')';
             }
+            
+            if (isset($task->dueDateReadable)) {
+                $taskString .= $this->color()->cyan('(due ' . $task->dueDateReadable . ')');
+            }
 
             if (isset($task->project->title)) {
                 $output->writeln(
