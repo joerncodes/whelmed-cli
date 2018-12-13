@@ -23,10 +23,10 @@ abstract class AbstractCommand
     protected function printTasks($tasks, OutputInterface $output, $prefix = "")
     {
         foreach ($tasks as $task) {
-            if($task->done) {
-                $taskString = $this->color()->darkgray($task->title); 
-            } elseif($task->flagged) {
-                $taskString = $this->color()->magenta('【F】 ' . $task->title);
+            if ($task->done) {
+                $taskString = $this->color()->darkgray($task->title);
+            } elseif ($task->flagged) {
+                $taskString = $this->color()->magenta('【F 】 ' . $task->title);
             } else {
                 $taskString = $this->color()->white($task->title);
             }
