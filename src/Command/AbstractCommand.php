@@ -31,6 +31,14 @@ abstract class AbstractCommand
                 $taskString = $this->color()->white($task->title);
             }
 
+            if ($task->contexts) {
+                $contextStrings = [];
+                foreach ($task->contexts as $context) {
+                    $contextStrings[] = '@' . $context->title;
+                }
+                $taskString .= '(' . implode(',', $contextStrings) . ')';
+            }
+
             if (isset($task->project->title)) {
                 $output->writeln(
                     $prefix .

@@ -13,6 +13,7 @@ class TaskShowCommand extends AbstractCommand
         $task = $json->task;
 
         $output->writeln($this->color()->white($task->title));
+        $output->writeln($this->color()->green($task->uuid));
         $output->writeln("");
 
         if ($task->dueDate) {
@@ -23,6 +24,14 @@ class TaskShowCommand extends AbstractCommand
         if ($task->project) {
             $output->writeln($this->color()->cyan("\tProject:") .
                 $this->color()->white($task->project->title));
+        }
+
+        if ($task->contexts) {
+            $output->writeln($this->color()->cyan("\tContexts:"));
+            foreach ($task->contexts as $context) {
+                $output->writeln("\t\t" . $this->color()->green($context->uuid) .
+                    $this->color()->white('@' . $context->title));
+            }
         }
 
         $output->writeln($this->color()->cyan("\tFlagged:") .
