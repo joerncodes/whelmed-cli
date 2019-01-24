@@ -18,6 +18,8 @@ use WhelmedCli\Command\TodayCommand;
 use WhelmedCli\Command\InboxCommand;
 use WhelmedCli\Command\TaskFlagCommand;
 use WhelmedCli\Command\TaskUnflagCommand;
+use WhelmedCli\Command\TaskArchiveCommand;
+use WhelmedCli\Command\TaskArchiveConfirmCommand;
 
 $dotEnv = new Dotenv();
 $dotEnv->load(__DIR__.'/.env');
@@ -28,6 +30,9 @@ $app = new Silly\Edition\PhpDi\Application();
 $app->command('inbox', new InboxCommand(), ['i']);
 $app->command('today', new TodayCommand(), ['t']);
 
+$app->command('archive', new TaskArchiveCommand(), ['a']);
+$app->command('archive:confirm', new TaskArchiveConfirmCommand(), ['a:c']);
+
 // Tasks
 $app->command('unflag uuid', new TaskUnflagCommand(), ['uf']);
 $app->command('flag uuid', new TaskFlagCommand(), ['f']);
@@ -36,6 +41,7 @@ $app->command('list', new TaskListCommand(), ['ls']);
 $app->command('do uuid', new TaskDoCommand(), ['d']);
 $app->command('show uuid', new TaskShowCommand(), ['s']);
 $app->command('create title [-d|--dueDate=]* [-p|--project=]* [-c|--context=]*', new TaskCreateCommand(), ['c', 'add']);
+
 
 // Projects
 $app->command('project:show uuid', new ProjectShowCommand(), ['p:show','p:s']);
