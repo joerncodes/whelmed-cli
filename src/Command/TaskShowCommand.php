@@ -18,6 +18,16 @@ class TaskShowCommand extends AbstractCommand
 
         if ($task->dueDate) {
             $output->writeln($this->color()->cyan("\tDue:") .
+                $this->color()->white($task->dueDate) . '(' . $task->dueDateReadable . ')');
+        }
+
+        if ($task->deferredUntil) {
+            $output->writeln($this->color()->cyan("\tDeferred until:") .
+                $this->color()->white($task->deferredUntil) . '(' . $task->deferredUntilReadable. ')');
+        }
+
+        if ($task->dueDate) {
+            $output->writeln($this->color()->cyan("\tDue:") .
                 $this->color()->white($task->dueDate));
         }
 

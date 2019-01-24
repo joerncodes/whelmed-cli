@@ -17,6 +17,7 @@ use WhelmedCli\Command\ProjectDeleteCommand;
 use WhelmedCli\Command\TodayCommand;
 use WhelmedCli\Command\InboxCommand;
 use WhelmedCli\Command\TaskFlagCommand;
+use WhelmedCli\Command\TaskDeferCommand;
 use WhelmedCli\Command\TaskUnflagCommand;
 use WhelmedCli\Command\TaskArchiveCommand;
 use WhelmedCli\Command\TaskArchiveConfirmCommand;
@@ -41,6 +42,7 @@ $app->command('list', new TaskListCommand(), ['ls']);
 $app->command('do uuid', new TaskDoCommand(), ['d']);
 $app->command('show uuid', new TaskShowCommand(), ['s']);
 $app->command('create title [-d|--dueDate=]* [-p|--project=]* [-c|--context=]*', new TaskCreateCommand(), ['c', 'add']);
+$app->command('defer uuid deferUntil', new TaskDeferCommand());
 
 
 // Projects
