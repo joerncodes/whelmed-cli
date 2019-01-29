@@ -4,11 +4,11 @@ namespace WhelmedCli\Command;
 
 use Symfony\Component\Console\Output\OutputInterface;
 
-class TaskArchiveConfirmCommand extends AbstractCommand
+class TaskPurgeConfirmCommand extends AbstractCommand
 {
     public function __invoke(OutputInterface $output)
     {
-        $json = $this->request('/task/archive/confirm', 'DELETE');
+        $json = $this->request('/task/purge/confirm', 'DELETE');
 
         if ($json->status == 'success') {
             $output->writeln($this->color()->green($json->message));

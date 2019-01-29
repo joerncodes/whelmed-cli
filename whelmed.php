@@ -19,8 +19,8 @@ use WhelmedCli\Command\InboxCommand;
 use WhelmedCli\Command\TaskFlagCommand;
 use WhelmedCli\Command\TaskDeferCommand;
 use WhelmedCli\Command\TaskUnflagCommand;
-use WhelmedCli\Command\TaskArchiveCommand;
-use WhelmedCli\Command\TaskArchiveConfirmCommand;
+use WhelmedCli\Command\TaskPurgeCommand;
+use WhelmedCli\Command\TaskPurgeConfirmCommand;
 
 $dotEnv = new Dotenv();
 $dotEnv->load(__DIR__.'/.env');
@@ -31,8 +31,8 @@ $app = new Silly\Edition\PhpDi\Application();
 $app->command('inbox', new InboxCommand(), ['i']);
 $app->command('today', new TodayCommand(), ['t']);
 
-$app->command('archive', new TaskArchiveCommand(), ['a']);
-$app->command('archive:confirm', new TaskArchiveConfirmCommand(), ['a:c']);
+$app->command('purge', new TaskPurgeCommand());
+$app->command('purge:confirm', new TaskPurgeConfirmCommand());
 
 // Tasks
 $app->command('unflag uuid', new TaskUnflagCommand(), ['uf']);
