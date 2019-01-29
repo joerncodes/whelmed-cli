@@ -41,7 +41,7 @@ $app->command('move uuid project', new TaskMoveCommand(), ['m']);
 $app->command('list', new TaskListCommand(), ['ls']);
 $app->command('do uuid', new TaskDoCommand(), ['d']);
 $app->command('show uuid', new TaskShowCommand(), ['s']);
-$app->command('create title [-d|--dueDate=]* [-p|--project=]* [-c|--context=]*', new TaskCreateCommand(), ['c', 'add']);
+$app->command('create title [-d|--dueDate=]* [-p|--project=]* [-c|--context=]* [--flag]', new TaskCreateCommand(), ['c', 'add']);
 $app->command('defer uuid deferUntil', new TaskDeferCommand());
 
 

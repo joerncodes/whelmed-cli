@@ -6,7 +6,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class TaskCreateCommand extends AbstractCommand
 {
-    public function __invoke($title, $dueDate = null, $project = null, $context = null, OutputInterface $output)
+    public function __invoke($title, $dueDate = null, $project = null, $context = null, $flag,  OutputInterface $output)
     {
         if (is_array($dueDate)) {
             $dueDate = $dueDate[0];
@@ -23,6 +23,7 @@ class TaskCreateCommand extends AbstractCommand
             $dueDate = $dateObject->format('Y-m-d H:i:s');
         }
 
+
         $title = explode('/', $title);
 
         foreach ($title as $taskTitle) {
@@ -31,6 +32,7 @@ class TaskCreateCommand extends AbstractCommand
                 'dueDate' => $dueDate,
                 'project' => $project,
                 'context' => $context,
+                'flagged' => !empty($flag)
             ]);
             if ($json->status == 'success') {
                 $output->writeln($this->color()->green('Created task ' . $json->task->title . ' (' . $json->task->uuid . ')'));
