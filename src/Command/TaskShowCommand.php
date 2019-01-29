@@ -8,7 +8,7 @@ class TaskShowCommand extends AbstractCommand
 {
     public function __invoke($uuid, OutputInterface $output)
     {
-        $json = $this->request('/task/' . $uuid);
+        $json = $this->request('/task/show/' . $uuid);
 
         $task = $json->task;
 
